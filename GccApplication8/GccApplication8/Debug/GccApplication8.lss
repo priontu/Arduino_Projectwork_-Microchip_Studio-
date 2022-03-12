@@ -1,0 +1,707 @@
+
+GccApplication8.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000516  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000004a2  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000004  00800100  00800100  00000516  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000516  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000548  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000028  00000000  00000000  00000584  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a43  00000000  00000000  000005ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006ab  00000000  00000000  00000fef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000005d0  00000000  00000000  0000169a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000078  00000000  00000000  00001c6c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003ba  00000000  00000000  00001ce4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000004d2  00000000  00000000  0000209e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  00002570  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 01 02 	jmp	0x402	; 0x402 <__vector_1>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a4 30       	cpi	r26, 0x04	; 4
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 48 00 	call	0x90	; 0x90 <main>
+  88:	0c 94 4f 02 	jmp	0x49e	; 0x49e <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <main>:
+
+int threshold, duty;
+
+int main(void)
+{
+	DDRB = 0xff;
+  90:	8f ef       	ldi	r24, 0xFF	; 255
+  92:	84 b9       	out	0x04, r24	; 4
+	DDRD = 0x00;
+  94:	1a b8       	out	0x0a, r1	; 10
+	// External Interrupt (Button)
+	EICRA = (1 << ISC00) | (1 < ISC01);
+  96:	81 e0       	ldi	r24, 0x01	; 1
+  98:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <__TEXT_REGION_LENGTH__+0x7f8069>
+	EIMSK = (1 << INT0);
+  9c:	8d bb       	out	0x1d, r24	; 29
+	sei();
+  9e:	78 94       	sei
+	// FAST PWM
+	TCNT1 = 0;
+  a0:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+  a4:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
+	TCCR1A = (1 << COM1A1) | (1 << COM1B1) | (1 << WGM10);
+  a8:	91 ea       	ldi	r25, 0xA1	; 161
+  aa:	90 93 80 00 	sts	0x0080, r25	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+	TCCR1B = (1 << WGM12) | (1 << CS10);
+  ae:	99 e0       	ldi	r25, 0x09	; 9
+  b0:	90 93 81 00 	sts	0x0081, r25	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+	TCCR2A = (1 << COM2A1) | (1 << WGM21) | (1 << WGM20);
+  b4:	93 e8       	ldi	r25, 0x83	; 131
+  b6:	90 93 b0 00 	sts	0x00B0, r25	; 0x8000b0 <__TEXT_REGION_LENGTH__+0x7f80b0>
+	TCCR2B = (1 << CS20);
+  ba:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__TEXT_REGION_LENGTH__+0x7f80b1>
+	// Potentiometer
+	ADMUX = (1 << REFS0) | (1 << ADLAR);
+  be:	80 e6       	ldi	r24, 0x60	; 96
+  c0:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
+	ADCSRA = (1 << ADEN) | (1 << ADPS0) | (1 << ADPS1) | (1 << ADPS2);
+  c4:	87 e8       	ldi	r24, 0x87	; 135
+  c6:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+	while(1){
+		// Converting the voltage
+		ADCSRA |= (1 << ADSC);
+  ca:	ea e7       	ldi	r30, 0x7A	; 122
+  cc:	f0 e0       	ldi	r31, 0x00	; 0
+  ce:	80 81       	ld	r24, Z
+  d0:	80 64       	ori	r24, 0x40	; 64
+  d2:	80 83       	st	Z, r24
+		while(ADCSRA & (1 << ADSC));
+  d4:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+  d8:	86 fd       	sbrc	r24, 6
+  da:	fc cf       	rjmp	.-8      	; 0xd4 <main+0x44>
+		threshold = ADCH;
+  dc:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+  e0:	90 e0       	ldi	r25, 0x00	; 0
+  e2:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+  e6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		if (threshold > 128){
+  ea:	81 38       	cpi	r24, 0x81	; 129
+  ec:	91 05       	cpc	r25, r1
+  ee:	0c f4       	brge	.+2      	; 0xf2 <main+0x62>
+  f0:	c4 c0       	rjmp	.+392    	; 0x27a <main+0x1ea>
+			// Right to Left
+			// LED connected to OC1A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+  f2:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <duty+0x1>
+  f6:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <duty>
+  fa:	13 c0       	rjmp	.+38     	; 0x122 <main+0x92>
+			{
+				OCR1A = duty;     // slowly increase the LED brightness
+  fc:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 100:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 104:	8f e1       	ldi	r24, 0x1F	; 31
+ 106:	9e e4       	ldi	r25, 0x4E	; 78
+ 108:	01 97       	sbiw	r24, 0x01	; 1
+ 10a:	f1 f7       	brne	.-4      	; 0x108 <main+0x78>
+ 10c:	00 c0       	rjmp	.+0      	; 0x10e <main+0x7e>
+ 10e:	00 00       	nop
+		while(ADCSRA & (1 << ADSC));
+		threshold = ADCH;
+		if (threshold > 128){
+			// Right to Left
+			// LED connected to OC1A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 110:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 114:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 118:	01 96       	adiw	r24, 0x01	; 1
+ 11a:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 11e:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 122:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 126:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 12a:	8f 3f       	cpi	r24, 0xFF	; 255
+ 12c:	91 05       	cpc	r25, r1
+ 12e:	34 f3       	brlt	.-52     	; 0xfc <main+0x6c>
+			{
+				OCR1A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 130:	8f ef       	ldi	r24, 0xFF	; 255
+ 132:	90 e0       	ldi	r25, 0x00	; 0
+ 134:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 138:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 13c:	13 c0       	rjmp	.+38     	; 0x164 <main+0xd4>
+			{
+				OCR1A = duty;       // slowly decrease the LED brightness
+ 13e:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 142:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 146:	8f e1       	ldi	r24, 0x1F	; 31
+ 148:	9e e4       	ldi	r25, 0x4E	; 78
+ 14a:	01 97       	sbiw	r24, 0x01	; 1
+ 14c:	f1 f7       	brne	.-4      	; 0x14a <main+0xba>
+ 14e:	00 c0       	rjmp	.+0      	; 0x150 <main+0xc0>
+ 150:	00 00       	nop
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+			{
+				OCR1A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 152:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 156:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 15a:	01 97       	sbiw	r24, 0x01	; 1
+ 15c:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 160:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 164:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 168:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 16c:	99 23       	and	r25, r25
+ 16e:	3c f7       	brge	.-50     	; 0x13e <main+0xae>
+			{
+				OCR1A = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR1A = 0;
+ 170:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 174:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+			// LED connected to OC1B
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 178:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <duty+0x1>
+ 17c:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <duty>
+ 180:	13 c0       	rjmp	.+38     	; 0x1a8 <main+0x118>
+			{
+				OCR1B = duty;     // slowly increase the LED brightness
+ 182:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 186:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+ 18a:	8f e1       	ldi	r24, 0x1F	; 31
+ 18c:	9e e4       	ldi	r25, 0x4E	; 78
+ 18e:	01 97       	sbiw	r24, 0x01	; 1
+ 190:	f1 f7       	brne	.-4      	; 0x18e <main+0xfe>
+ 192:	00 c0       	rjmp	.+0      	; 0x194 <main+0x104>
+ 194:	00 00       	nop
+				OCR1A = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR1A = 0;
+			// LED connected to OC1B
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 196:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 19a:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 19e:	01 96       	adiw	r24, 0x01	; 1
+ 1a0:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 1a4:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 1a8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 1ac:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 1b0:	8f 3f       	cpi	r24, 0xFF	; 255
+ 1b2:	91 05       	cpc	r25, r1
+ 1b4:	34 f3       	brlt	.-52     	; 0x182 <main+0xf2>
+			{
+				OCR1B = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 1b6:	8f ef       	ldi	r24, 0xFF	; 255
+ 1b8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ba:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 1be:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 1c2:	13 c0       	rjmp	.+38     	; 0x1ea <main+0x15a>
+			{
+				OCR1B = duty;       // slowly decrease the LED brightness
+ 1c4:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 1c8:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+ 1cc:	8f e1       	ldi	r24, 0x1F	; 31
+ 1ce:	9e e4       	ldi	r25, 0x4E	; 78
+ 1d0:	01 97       	sbiw	r24, 0x01	; 1
+ 1d2:	f1 f7       	brne	.-4      	; 0x1d0 <main+0x140>
+ 1d4:	00 c0       	rjmp	.+0      	; 0x1d6 <main+0x146>
+ 1d6:	00 00       	nop
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+			{
+				OCR1B = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 1d8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 1dc:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 1e0:	01 97       	sbiw	r24, 0x01	; 1
+ 1e2:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 1e6:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 1ea:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 1ee:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 1f2:	99 23       	and	r25, r25
+ 1f4:	3c f7       	brge	.-50     	; 0x1c4 <main+0x134>
+			{
+				OCR1B = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR1B = 0;
+ 1f6:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 1fa:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+			// LED connected to OC2A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 1fe:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <duty+0x1>
+ 202:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <duty>
+ 206:	11 c0       	rjmp	.+34     	; 0x22a <main+0x19a>
+			{
+				OCR2A = duty;     // slowly increase the LED brightness
+ 208:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+ 20c:	8f e1       	ldi	r24, 0x1F	; 31
+ 20e:	9e e4       	ldi	r25, 0x4E	; 78
+ 210:	01 97       	sbiw	r24, 0x01	; 1
+ 212:	f1 f7       	brne	.-4      	; 0x210 <main+0x180>
+ 214:	00 c0       	rjmp	.+0      	; 0x216 <main+0x186>
+ 216:	00 00       	nop
+				OCR1B = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR1B = 0;
+			// LED connected to OC2A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 218:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 21c:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 220:	01 96       	adiw	r24, 0x01	; 1
+ 222:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 226:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 22a:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 22e:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 232:	8f 3f       	cpi	r24, 0xFF	; 255
+ 234:	91 05       	cpc	r25, r1
+ 236:	44 f3       	brlt	.-48     	; 0x208 <main+0x178>
+			{
+				OCR2A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 238:	8f ef       	ldi	r24, 0xFF	; 255
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 240:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 244:	11 c0       	rjmp	.+34     	; 0x268 <main+0x1d8>
+			{
+				OCR2A = duty;       // slowly decrease the LED brightness
+ 246:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+ 24a:	8f e1       	ldi	r24, 0x1F	; 31
+ 24c:	9e e4       	ldi	r25, 0x4E	; 78
+ 24e:	01 97       	sbiw	r24, 0x01	; 1
+ 250:	f1 f7       	brne	.-4      	; 0x24e <main+0x1be>
+ 252:	00 c0       	rjmp	.+0      	; 0x254 <main+0x1c4>
+ 254:	00 00       	nop
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+			{
+				OCR2A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 256:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 25a:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 25e:	01 97       	sbiw	r24, 0x01	; 1
+ 260:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 264:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 268:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 26c:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 270:	99 23       	and	r25, r25
+ 272:	4c f7       	brge	.-46     	; 0x246 <main+0x1b6>
+			{
+				OCR2A = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR2A = 0;
+ 274:	10 92 b3 00 	sts	0x00B3, r1	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+ 278:	28 cf       	rjmp	.-432    	; 0xca <main+0x3a>
+		}
+		else{
+			// Left to Right
+			// LED connected to OC2A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 27a:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <duty+0x1>
+ 27e:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <duty>
+ 282:	11 c0       	rjmp	.+34     	; 0x2a6 <main+0x216>
+			{
+				OCR2A = duty;     // slowly increase the LED brightness
+ 284:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+ 288:	8f e1       	ldi	r24, 0x1F	; 31
+ 28a:	9e e4       	ldi	r25, 0x4E	; 78
+ 28c:	01 97       	sbiw	r24, 0x01	; 1
+ 28e:	f1 f7       	brne	.-4      	; 0x28c <main+0x1fc>
+ 290:	00 c0       	rjmp	.+0      	; 0x292 <main+0x202>
+ 292:	00 00       	nop
+			OCR2A = 0;
+		}
+		else{
+			// Left to Right
+			// LED connected to OC2A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 294:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 298:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 29c:	01 96       	adiw	r24, 0x01	; 1
+ 29e:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 2a2:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 2a6:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 2aa:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 2ae:	8f 3f       	cpi	r24, 0xFF	; 255
+ 2b0:	91 05       	cpc	r25, r1
+ 2b2:	44 f3       	brlt	.-48     	; 0x284 <main+0x1f4>
+			{
+				OCR2A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 2b4:	8f ef       	ldi	r24, 0xFF	; 255
+ 2b6:	90 e0       	ldi	r25, 0x00	; 0
+ 2b8:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 2bc:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 2c0:	11 c0       	rjmp	.+34     	; 0x2e4 <main+0x254>
+			{
+				OCR2A = duty;       // slowly decrease the LED brightness
+ 2c2:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+ 2c6:	8f e1       	ldi	r24, 0x1F	; 31
+ 2c8:	9e e4       	ldi	r25, 0x4E	; 78
+ 2ca:	01 97       	sbiw	r24, 0x01	; 1
+ 2cc:	f1 f7       	brne	.-4      	; 0x2ca <main+0x23a>
+ 2ce:	00 c0       	rjmp	.+0      	; 0x2d0 <main+0x240>
+ 2d0:	00 00       	nop
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+			{
+				OCR2A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 2d2:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 2d6:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 2da:	01 97       	sbiw	r24, 0x01	; 1
+ 2dc:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 2e0:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 2e4:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 2e8:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 2ec:	99 23       	and	r25, r25
+ 2ee:	4c f7       	brge	.-46     	; 0x2c2 <main+0x232>
+			{
+				OCR2A = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR2A = 0;
+ 2f0:	10 92 b3 00 	sts	0x00B3, r1	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+			// LED connected to OC1B
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 2f4:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <duty+0x1>
+ 2f8:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <duty>
+ 2fc:	13 c0       	rjmp	.+38     	; 0x324 <main+0x294>
+			{
+				OCR1B = duty;     // slowly increase the LED brightness
+ 2fe:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 302:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+ 306:	8f e1       	ldi	r24, 0x1F	; 31
+ 308:	9e e4       	ldi	r25, 0x4E	; 78
+ 30a:	01 97       	sbiw	r24, 0x01	; 1
+ 30c:	f1 f7       	brne	.-4      	; 0x30a <main+0x27a>
+ 30e:	00 c0       	rjmp	.+0      	; 0x310 <main+0x280>
+ 310:	00 00       	nop
+				OCR2A = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR2A = 0;
+			// LED connected to OC1B
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 312:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 316:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 31a:	01 96       	adiw	r24, 0x01	; 1
+ 31c:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 320:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 324:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 328:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 32c:	8f 3f       	cpi	r24, 0xFF	; 255
+ 32e:	91 05       	cpc	r25, r1
+ 330:	34 f3       	brlt	.-52     	; 0x2fe <main+0x26e>
+			{
+				OCR1B = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 332:	8f ef       	ldi	r24, 0xFF	; 255
+ 334:	90 e0       	ldi	r25, 0x00	; 0
+ 336:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 33a:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 33e:	13 c0       	rjmp	.+38     	; 0x366 <main+0x2d6>
+			{
+				OCR1B = duty;       // slowly decrease the LED brightness
+ 340:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 344:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+ 348:	8f e1       	ldi	r24, 0x1F	; 31
+ 34a:	9e e4       	ldi	r25, 0x4E	; 78
+ 34c:	01 97       	sbiw	r24, 0x01	; 1
+ 34e:	f1 f7       	brne	.-4      	; 0x34c <main+0x2bc>
+ 350:	00 c0       	rjmp	.+0      	; 0x352 <main+0x2c2>
+ 352:	00 00       	nop
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+			{
+				OCR1B = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 354:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 358:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 35c:	01 97       	sbiw	r24, 0x01	; 1
+ 35e:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 362:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 366:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 36a:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 36e:	99 23       	and	r25, r25
+ 370:	3c f7       	brge	.-50     	; 0x340 <main+0x2b0>
+			{
+				OCR1B = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR1B = 0;
+ 372:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
+ 376:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
+			// LED connected to OC1A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 37a:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <duty+0x1>
+ 37e:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <duty>
+ 382:	13 c0       	rjmp	.+38     	; 0x3aa <main+0x31a>
+			{
+				OCR1A = duty;     // slowly increase the LED brightness
+ 384:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 388:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 38c:	8f e1       	ldi	r24, 0x1F	; 31
+ 38e:	9e e4       	ldi	r25, 0x4E	; 78
+ 390:	01 97       	sbiw	r24, 0x01	; 1
+ 392:	f1 f7       	brne	.-4      	; 0x390 <main+0x300>
+ 394:	00 c0       	rjmp	.+0      	; 0x396 <main+0x306>
+ 396:	00 00       	nop
+				OCR1B = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR1B = 0;
+			// LED connected to OC1A
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+ 398:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 39c:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 3a0:	01 96       	adiw	r24, 0x01	; 1
+ 3a2:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 3a6:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 3aa:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 3ae:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 3b2:	8f 3f       	cpi	r24, 0xFF	; 255
+ 3b4:	91 05       	cpc	r25, r1
+ 3b6:	34 f3       	brlt	.-52     	; 0x384 <main+0x2f4>
+			{
+				OCR1A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 3b8:	8f ef       	ldi	r24, 0xFF	; 255
+ 3ba:	90 e0       	ldi	r25, 0x00	; 0
+ 3bc:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 3c0:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 3c4:	13 c0       	rjmp	.+38     	; 0x3ec <main+0x35c>
+			{
+				OCR1A = duty;       // slowly decrease the LED brightness
+ 3c6:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 3ca:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 3ce:	8f e1       	ldi	r24, 0x1F	; 31
+ 3d0:	9e e4       	ldi	r25, 0x4E	; 78
+ 3d2:	01 97       	sbiw	r24, 0x01	; 1
+ 3d4:	f1 f7       	brne	.-4      	; 0x3d2 <main+0x342>
+ 3d6:	00 c0       	rjmp	.+0      	; 0x3d8 <main+0x348>
+ 3d8:	00 00       	nop
+			for(duty=0; duty<0xff; duty++)   // 0 to max duty cycle
+			{
+				OCR1A = duty;     // slowly increase the LED brightness
+				_delay_ms(5);
+			}
+			for(duty=0xff; duty>=0; duty--)   // max to 0 duty cycle
+ 3da:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 3de:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 3e2:	01 97       	sbiw	r24, 0x01	; 1
+ 3e4:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <duty+0x1>
+ 3e8:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <duty>
+ 3ec:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <duty>
+ 3f0:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <duty+0x1>
+ 3f4:	99 23       	and	r25, r25
+ 3f6:	3c f7       	brge	.-50     	; 0x3c6 <main+0x336>
+			{
+				OCR1A = duty;       // slowly decrease the LED brightness
+				_delay_ms(5);
+			}
+			OCR1A = 0;
+ 3f8:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 3fc:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 400:	64 ce       	rjmp	.-824    	; 0xca <main+0x3a>
+
+00000402 <__vector_1>:
+		}
+	}
+}
+
+ISR(INT0_vect) {
+ 402:	1f 92       	push	r1
+ 404:	0f 92       	push	r0
+ 406:	0f b6       	in	r0, 0x3f	; 63
+ 408:	0f 92       	push	r0
+ 40a:	11 24       	eor	r1, r1
+ 40c:	2f 93       	push	r18
+ 40e:	3f 93       	push	r19
+ 410:	4f 93       	push	r20
+ 412:	8f 93       	push	r24
+ 414:	9f 93       	push	r25
+ 416:	af 93       	push	r26
+ 418:	bf 93       	push	r27
+ 41a:	cf 93       	push	r28
+ 41c:	df 93       	push	r29
+ 41e:	ef 93       	push	r30
+ 420:	ff 93       	push	r31
+	for (int i = 1; i <= 3; i++) {
+ 422:	81 e0       	ldi	r24, 0x01	; 1
+ 424:	90 e0       	ldi	r25, 0x00	; 0
+ 426:	28 c0       	rjmp	.+80     	; 0x478 <__vector_1+0x76>
+		OCR1A = 0xff;
+ 428:	c8 e8       	ldi	r28, 0x88	; 136
+ 42a:	d0 e0       	ldi	r29, 0x00	; 0
+ 42c:	2f ef       	ldi	r18, 0xFF	; 255
+ 42e:	30 e0       	ldi	r19, 0x00	; 0
+ 430:	39 83       	std	Y+1, r19	; 0x01
+ 432:	28 83       	st	Y, r18
+		OCR1B = 0xff;
+ 434:	aa e8       	ldi	r26, 0x8A	; 138
+ 436:	b0 e0       	ldi	r27, 0x00	; 0
+ 438:	11 96       	adiw	r26, 0x01	; 1
+ 43a:	3c 93       	st	X, r19
+ 43c:	2e 93       	st	-X, r18
+		OCR2A = 0xff;
+ 43e:	e3 eb       	ldi	r30, 0xB3	; 179
+ 440:	f0 e0       	ldi	r31, 0x00	; 0
+ 442:	2f ef       	ldi	r18, 0xFF	; 255
+ 444:	20 83       	st	Z, r18
+ 446:	2f ef       	ldi	r18, 0xFF	; 255
+ 448:	39 e6       	ldi	r19, 0x69	; 105
+ 44a:	48 e1       	ldi	r20, 0x18	; 24
+ 44c:	21 50       	subi	r18, 0x01	; 1
+ 44e:	30 40       	sbci	r19, 0x00	; 0
+ 450:	40 40       	sbci	r20, 0x00	; 0
+ 452:	e1 f7       	brne	.-8      	; 0x44c <__vector_1+0x4a>
+ 454:	00 c0       	rjmp	.+0      	; 0x456 <__vector_1+0x54>
+ 456:	00 00       	nop
+		_delay_ms(500);
+		OCR1A = 0x00;
+ 458:	19 82       	std	Y+1, r1	; 0x01
+ 45a:	18 82       	st	Y, r1
+		OCR1B = 0x00;
+ 45c:	11 96       	adiw	r26, 0x01	; 1
+ 45e:	1c 92       	st	X, r1
+ 460:	1e 92       	st	-X, r1
+		OCR2A = 0x00;
+ 462:	10 82       	st	Z, r1
+ 464:	2f ef       	ldi	r18, 0xFF	; 255
+ 466:	39 e6       	ldi	r19, 0x69	; 105
+ 468:	48 e1       	ldi	r20, 0x18	; 24
+ 46a:	21 50       	subi	r18, 0x01	; 1
+ 46c:	30 40       	sbci	r19, 0x00	; 0
+ 46e:	40 40       	sbci	r20, 0x00	; 0
+ 470:	e1 f7       	brne	.-8      	; 0x46a <__vector_1+0x68>
+ 472:	00 c0       	rjmp	.+0      	; 0x474 <__vector_1+0x72>
+ 474:	00 00       	nop
+		}
+	}
+}
+
+ISR(INT0_vect) {
+	for (int i = 1; i <= 3; i++) {
+ 476:	01 96       	adiw	r24, 0x01	; 1
+ 478:	84 30       	cpi	r24, 0x04	; 4
+ 47a:	91 05       	cpc	r25, r1
+ 47c:	ac f2       	brlt	.-86     	; 0x428 <__vector_1+0x26>
+		OCR1A = 0x00;
+		OCR1B = 0x00;
+		OCR2A = 0x00;
+		_delay_ms(500);
+	}
+}
+ 47e:	ff 91       	pop	r31
+ 480:	ef 91       	pop	r30
+ 482:	df 91       	pop	r29
+ 484:	cf 91       	pop	r28
+ 486:	bf 91       	pop	r27
+ 488:	af 91       	pop	r26
+ 48a:	9f 91       	pop	r25
+ 48c:	8f 91       	pop	r24
+ 48e:	4f 91       	pop	r20
+ 490:	3f 91       	pop	r19
+ 492:	2f 91       	pop	r18
+ 494:	0f 90       	pop	r0
+ 496:	0f be       	out	0x3f, r0	; 63
+ 498:	0f 90       	pop	r0
+ 49a:	1f 90       	pop	r1
+ 49c:	18 95       	reti
+
+0000049e <_exit>:
+ 49e:	f8 94       	cli
+
+000004a0 <__stop_program>:
+ 4a0:	ff cf       	rjmp	.-2      	; 0x4a0 <__stop_program>
